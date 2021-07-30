@@ -9,4 +9,5 @@ type SSHOptions struct {
 	LocalPortForwardList []string
 	User string
 	Port string
+	Verbose bool
 }

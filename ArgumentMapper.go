@@ -42,5 +42,9 @@ func mapArguments(options SSHOptions) []string {
 		arguments = append(arguments, "-p", options.Port)
 	}
 
+	if options.Verbose {
+		arguments = append(arguments, "-v")
+	}
+
 	return arguments
 }
