@@ -10,4 +10,5 @@ type SSHOptions struct {
 	User string
 	Port string
 	Verbose bool
+	IdentityFile string
 }

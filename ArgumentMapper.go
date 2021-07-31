@@ -46,5 +46,9 @@ func mapArguments(options SSHOptions) []string {
 		arguments = append(arguments, "-v")
 	}
 
+	if options.IdentityFile != "" {
+		arguments = append(arguments, "-i", options.IdentityFile)
+	}
+
 	return arguments
 }
