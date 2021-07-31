@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os/exec"
-	"strings"
 )
 
 func NewSSH(options SSHOptions, destination string, command string, args []string) *SSH {
@@ -20,23 +19,18 @@ func NewSSH(options SSHOptions, destination string, command string, args []strin
 	}
 }
 
-func (s SSH) Run() error {
+func (s SSH) Run() {
 	pipe, _ := s.cmd.StdoutPipe()
 	err := s.cmd.Start()
-
-	fmt.Println("argument list:")
-	fmt.Println(strings.Join(s.cmd.Args, " "))
 
 	if err != nil {
 		fmt.Printf("error")
 	} else {
 		readerInline := bufio.NewReader(pipe)
-		inline, err := readerInline.ReadString('\r')
-		for err == nil {
+		inline, _ := readerInline.ReadString('\r')
+		for inline != "" {
 			fmt.Printf("\r%s", inline)
 			inline, err = readerInline.ReadString('\r')
 		}
 	}
-
-	return err
 }
