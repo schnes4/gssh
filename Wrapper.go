@@ -34,3 +34,9 @@ func (s SSH) Run() {
 		}
 	}
 }
+
+func (s SSH) GetFullArguments() []string {
+	allArgs := append(mapArguments(s.SSHOptions), s.Destination, s.Command)
+	allArgs = append(allArgs, s.Args...)
+	return allArgs
+}
